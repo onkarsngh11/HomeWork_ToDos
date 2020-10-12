@@ -18,7 +18,7 @@ namespace HomeWork_ToDos.Filters
             {
                 Name = "Custom-Correlation-Id",
                 In = ParameterLocation.Header,
-                Description = "set Custom-Correlation-Id for request/response tracking",
+                Description = "Id to track particular request/response",
                 Required = false
             });
         }
