@@ -1,0 +1,492 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HomeWork_ToDos.API</name>
+    </assembly>
+    <members>
+        <member name="T:HomeWork_ToDos.Controllers.UserController">
+            <summary>
+            User controller.
+            </summary>
+        </member>
+        <member name="M:HomeWork_ToDos.Controllers.UserController.Login(HomeWork_ToDos.CommonLib.Models.APIModels.LoginModel)">
+            <summary>
+            Takes UserName and Password and generates token on successful authentication. 
+            </summary>
+            <param name="loginModel">Conatains UserName,Password </param>
+            <returns>ApiResponse on User Login </returns>
+        </member>
+        <member name="M:HomeWork_ToDos.Controllers.UserController.Register(HomeWork_ToDos.CommonLib.Models.APIModels.CreateUserModel)">
+            <summary>
+            Register users.
+            </summary>
+            <param name="createUserModel"></param>
+            <returns>Api Response based on success/failure.</returns>
+        </member>
+        <member name="T:HomeWork_ToDos.API.Controllers.v1.LabelController">
+            <summary>
+            Labels controller.
+            </summary>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Controllers.v1.LabelController.GetAllLabels(HomeWork_ToDos.CommonLib.Models.APIModels.PaginationParameters)">
+            <summary>
+            Get all label records.
+            </summary>
+            <param name="parameters"></param>
+            <returns> Action result based on Success/Failure.</returns>
+            <response code="200"> Gets all  Labels. </response>
+            <response code="404"> Error: 404 not found </response>
+            <response code="401"> Authorization information is missing or invalid.</response>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Controllers.v1.LabelController.GetLabelById(System.Int64)">
+            <summary>
+            Get specific label record.
+            </summary> 
+            <param name="labelId" example="1"></param>
+            <returns>Returns Action result" type based on Success/Failure.</returns>
+            <response code="200"> Gets specified label.</response>
+            <response code="404"> A label with the specified label ID was not found.</response>
+            <response code="401"> Authorization information is missing or invalid.</response>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Controllers.v1.LabelController.CreateLabel(HomeWork_ToDos.CommonLib.Models.APIModels.CreateLabelModel,Microsoft.AspNetCore.Mvc.ApiVersion)">
+            <summary>
+            Create Label record.
+            </summary>
+            <param name="createLabelModel"></param>
+            <param name="version"></param>
+            <returns>Returns Action result type based on Success/Failure.</returns>
+            <response code="201"> Creates Label and returns location where it is created.</response>
+            <response code="400"> Invalid request format.</response>
+            <response code="401"> Authorization information is missing or invalid.</response>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Controllers.v1.LabelController.DeleteLabel(System.Int64)">
+            <summary>
+            Delete specific label record.
+            </summary>
+            <param name="id"></param>
+            <returns>Returns Action result type based on Success/Failure.</returns>
+            <response code="200"> Deletes specified label record.</response>
+            <response code="404"> A label with the specified label ID was not found.</response>
+            <response code="401"> Authorization information is missing or invalid.</response>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Controllers.v1.LabelController.AssignLabelToList(HomeWork_ToDos.CommonLib.Models.APIModels.AssignLabelToListModel)">
+            <summary>
+            Assign label/s to todolist record.
+            </summary>
+            <param name="assignLabelToListModel"></param>
+            <returns>Ok if successful else not found.</returns>
+            <response code="200"> Assigns specified label/s to todolist record.</response>
+            <response code="404"> Error: 404 not found.</response>
+            <response code="401"> Authorization information is missing or invalid.</response>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Controllers.v1.LabelController.AssignLabelToItem(HomeWork_ToDos.CommonLib.Models.APIModels.AssignLabelToItemModel)">
+            <summary>
+            Assign label/s to todoitem record.
+            </summary>
+            <param name="assignLabelToItemModel"></param>
+            <returns>Ok if successful else not found.</returns>
+            <response code="200"> Assigns specified label/s to todoitem record.</response>
+            <response code="404"> Error: 404 not found.</response>
+            <response code="401"> Authorization information is missing or invalid.</response>
+        </member>
+        <member name="T:HomeWork_ToDos.API.Controllers.v1.ToDoItemController">
+            <summary>
+            TodoItems controller.
+            </summary>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Controllers.v1.ToDoItemController.GetAllToDoItems(HomeWork_ToDos.CommonLib.Models.APIModels.PaginationParameters)">
+            <summary>
+            Get all todoitem records.
+            </summary>
+            <param name="parameters"></param>
+            <returns>Returns Action Result type based on Success or Failure. </returns>
+            <response code="200"> Gets all todoitem reecords.</response>
+            <response code="404"> A record with the specified todolist ID was not found.</response>
+            <response code="401"> Authorization information is missing or invalid.</response>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Controllers.v1.ToDoItemController.GetToDoItemById(System.Int64)">
+            <summary>
+            Get specific todoitem record.
+            </summary> 
+            <param name="toDoItemId"></param>
+            <returns>Returns Action result type based on Success/Failure.</returns>
+            <response code="200"> Gets specific todoitem record.</response>
+            <response code="404"> Error: 404 not found.</response>
+            <response code="401"> Authorization information is missing or invalid.</response>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Controllers.v1.ToDoItemController.CreateToDoItem(HomeWork_ToDos.CommonLib.Models.APIModels.CreateToDoItemModel,Microsoft.AspNetCore.Mvc.ApiVersion)">
+            <summary>
+            Create todoitem record.
+            </summary>
+            <param name="createToDoItem"></param>
+            <param name="version"></param>
+            <returns>Returns Action result type based on Success/Failure.</returns>
+            <response code="201"> Creates todoitem reecord and returns location where it is created.</response>
+            <response code="401"> Authorization information is missing or invalid.</response>
+            <response code="400"> The provided todoitem id should be positive integer.</response>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Controllers.v1.ToDoItemController.PutToDoItem(HomeWork_ToDos.CommonLib.Models.APIModels.UpdateToDoItemModel)">
+            <summary>
+            Update specific todoitem record.
+            </summary>
+            <param name="itemToUpdate"></param>
+            <returns>Returns ActionResult type based on Success/Failure.</returns>
+            <response code="200"> Updates specific todoitem reecord with details provided.</response>
+            <response code="404"> A record with the specified todolist ID was not found.</response>
+            <response code="401"> Authorization information is missing or invalid.</response>
+            <response code="400"> The provided todoitem id should be positive integer.</response>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Controllers.v1.ToDoItemController.DeleteToDoItem(System.Int64)">
+            <summary>
+            Delete specific todoItem record.
+            </summary>
+            <param name="id"></param>
+            <returns>Returns Action result type based on Success/Failure.</returns>
+            <response code="200"> Deletes specific todoitem reecord.</response>
+            <response code="404"> A record with the specified todolist ID was not found.</response>
+            <response code="401"> Authorization information is missing or invalid.</response>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Controllers.v1.ToDoItemController.Patch(System.Int64,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{HomeWork_ToDos.CommonLib.Models.APIModels.UpdateToDoItemModel})">
+            <summary>
+            Partial update todoitem record with JsonPatch document.
+            </summary>
+            <param name="toDoItemId"></param>
+            <param name="itemToUpdatePatchDoc"></param>
+            <returns>Returns Action result type based on Success/Failure.</returns>
+            <response code="200"> Updates specific todoitem record with details provided.</response>
+            <response code="404"> A record with the specified todolist ID was not found.</response>
+            <response code="401"> Authorization information is missing or invalid.</response>
+            <response code="400"> The provided todoitem id should be positive integer.</response>
+        </member>
+        <member name="T:HomeWork_ToDos.API.Controllers.v1.ToDoListController">
+            <summary>
+            Todolists controller.
+            </summary>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Controllers.v1.ToDoListController.GetAllToDoLists(HomeWork_ToDos.CommonLib.Models.APIModels.PaginationParameters)">
+            <summary>
+            Get all todolist records.
+            </summary>
+            <param name="parameters"></param>
+            <returns>Returns Action Result type based on Success or Failure. </returns>
+            <response code="200"> Gets all todolist records.</response>
+            <response code="404"> A record with the specified todolist ID was not found.</response>
+            <response code="401"> Authorization information is missing or invalid.</response>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Controllers.v1.ToDoListController.GetToDoListById(System.Int64)">
+            <summary>
+            Get specific todolist record.
+            </summary> 
+            <param name="toDoListId" example="1"></param>
+            <returns>Returns Action result type based on Success/Failure.</returns>
+            <response code="200"> Gets specific todolist record.</response>
+            <response code="404"> A record with the specified todolist ID was not found.</response>
+            <response code="401"> Authorization information is missing or invalid.</response>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Controllers.v1.ToDoListController.CreateToDoList(HomeWork_ToDos.CommonLib.Models.APIModels.CreateToDoListModel,Microsoft.AspNetCore.Mvc.ApiVersion)">
+            <summary>
+            Create todolist record.
+            </summary>
+            <param name="createToDoList"></param>
+            <param name="version"></param>
+            <returns>Returns Action result type based on Success/Failure.</returns>
+            <response code="201"> Creates todolist record and returns the location where created.</response>
+            <response code="401"> Authorization information is missing or invalid.</response>
+            <response code="400"> The provided todolistid should be positive integer.</response>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Controllers.v1.ToDoListController.PutToDoList(HomeWork_ToDos.CommonLib.Models.APIModels.UpdateToDoListModel)">
+            <summary>
+            Update specific todolist record.
+            </summary>
+            <param name="listToUpdate"></param>
+            <returns>Returns ActionResult type based on Success/Failure.</returns>
+            <response code="200"> Updates specific todolist record with details provided.</response>
+            <response code="404"> A record with the specified todolist ID was not found.</response>
+            <response code="401"> Authorization information is missing or invalid.</response>
+            <response code="400"> The provided todolistid should be positive integer.</response>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Controllers.v1.ToDoListController.DeleteToDoList(System.Int64)">
+            <summary>
+            Delete specific todolist record.
+            </summary>
+            <param name="id"></param>
+            <returns>Returns Action result type based on Success/Failure.</returns>
+            <response code="200"> Deletes specific todolist record.</response>
+            <response code="404"> A record with the specified todolist ID was not found.</response>
+            <response code="401"> Authorization information is missing or invalid.</response>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Controllers.v1.ToDoListController.PatchToDoList(System.Int64,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{HomeWork_ToDos.CommonLib.Models.APIModels.UpdateToDoListModel})">
+            <summary>
+            Partial update specific todolist record with JsonPatch document.
+            </summary>
+            <param name="toDoListId"></param>
+            <param name="listToUpdatePatchDoc">Partial updated data.</param>
+            <returns>Returns Action result type based on Success/Failure.</returns>
+            <response code="200"> Updates specific todolist record with details provided.</response>
+            <response code="404"> A record with the specified todolist ID was not found.</response>
+            <response code="401"> Authorization information is missing or invalid.</response>
+            <response code="400"> The provided todolistid should be positive integer.</response>
+        </member>
+        <member name="T:HomeWork_ToDos.API.GraphQl.Mutations.Mutation">
+            <summary>
+            LabelMutation class for GraphQl.
+            </summary>
+        </member>
+        <member name="M:HomeWork_ToDos.API.GraphQl.Mutations.Mutation.AddLabel(HomeWork_ToDos.CommonLib.Dtos.CreateLabelDto)">
+            <summary>
+            Adds Label record
+            </summary>
+            <param name="createLabelDto"></param>
+            <returns> added ToDoList record. </returns>
+        </member>
+        <member name="M:HomeWork_ToDos.API.GraphQl.Mutations.Mutation.DeleteLabel(System.Int64)">
+            <summary>
+            Delete Label record.
+            </summary>
+            <param name="id"></param>
+            <returns> 1 on successful deletion else throws argument exception. </returns>
+        </member>
+        <member name="M:HomeWork_ToDos.API.GraphQl.Mutations.Mutation.AddToDoItem(HomeWork_ToDos.CommonLib.Dtos.CreateToDoItemDto)">
+            <summary>
+            Adds ToDoItem record
+            </summary>
+            <param name="createToDoItemDto"></param>
+            <returns> added ToDoList record. </returns>
+        </member>
+        <member name="M:HomeWork_ToDos.API.GraphQl.Mutations.Mutation.UpdateToDoItem(HomeWork_ToDos.CommonLib.Dtos.UpdateToDoItemDto)">
+            <summary>
+            Update ToDoItem record
+            </summary>
+            <param name="updateToDoItemDto"></param>
+            <returns> Updated record. </returns>
+        </member>
+        <member name="M:HomeWork_ToDos.API.GraphQl.Mutations.Mutation.DeleteToDoItem(System.Int64)">
+            <summary>
+            Delete ToDoItem record.
+            </summary>
+            <param name="id"></param>
+            <returns> 1 on successful deletion else throws argument exception. </returns>
+        </member>
+        <member name="M:HomeWork_ToDos.API.GraphQl.Mutations.Mutation.AddToDoList(HomeWork_ToDos.CommonLib.Dtos.CreateToDoListDto)">
+            <summary>
+            Adds ToDoList record
+            </summary>
+            <param name="createToDoListDto"></param>
+            <returns> added ToDoList record. </returns>
+        </member>
+        <member name="M:HomeWork_ToDos.API.GraphQl.Mutations.Mutation.UpdateToDoList(HomeWork_ToDos.CommonLib.Dtos.UpdateToDoListDto)">
+            <summary>
+            Update ToDoList record
+            </summary>
+            <param name="updateToDoListDto"></param>
+            <returns> Updated record. </returns>
+        </member>
+        <member name="M:HomeWork_ToDos.API.GraphQl.Mutations.Mutation.DeleteToDoList(System.Int64)">
+            <summary>
+            Delete ToDoList record.
+            </summary>
+            <param name="id"></param>
+            <returns> 1 on successful deletion else throws argument exception. </returns>
+        </member>
+        <member name="M:HomeWork_ToDos.API.GraphQl.Mutations.Mutation.AuthenticateUser(System.String,System.String)">
+            <summary>
+            Authenticate user.
+            </summary>
+            <param name="userName">Username.</param>
+            <param name="password">Password.</param>
+            <returns>Returns user id.</returns>
+        </member>
+        <member name="M:HomeWork_ToDos.API.GraphQl.Mutations.Mutation.RegisterUser(HomeWork_ToDos.CommonLib.Dtos.CreateUserDto)">
+            <summary>
+            register user.
+            </summary>
+            <param name="userDto"></param>
+            <returns> success/failure result.</returns>
+        </member>
+        <member name="T:HomeWork_ToDos.API.GraphQl.Query">
+            <summary>
+            Query class for GraphQl.
+            </summary>
+        </member>
+        <member name="M:HomeWork_ToDos.API.GraphQl.Query.GetAllLabels">
+            <summary>
+            Get labels.
+            </summary>
+            <returns>Returns labels.</returns>
+        </member>
+        <member name="M:HomeWork_ToDos.API.GraphQl.Query.GetLabelById(System.Int64)">
+            <summary>
+            Get label by id.
+            </summary>
+            <param name="labelId">label id.</param>
+        </member>
+        <member name="M:HomeWork_ToDos.API.GraphQl.Query.GetAllToDoItems">
+            <summary>
+            Get ToDoItems.
+            </summary>
+            <returns>Returns ToDoItems.</returns>
+        </member>
+        <member name="M:HomeWork_ToDos.API.GraphQl.Query.GetToDoItemById(System.Int64)">
+            <summary>
+            Get ToDoItem by id.
+            </summary>
+            <param name="toDoItemId">ToDoItem id.</param>        
+        </member>
+        <member name="M:HomeWork_ToDos.API.GraphQl.Query.GetAllToDoLists">
+            <summary>
+            Get ToDoLists.
+            </summary>
+            <returns>Returns ToDoLists.</returns>
+        </member>
+        <member name="M:HomeWork_ToDos.API.GraphQl.Query.GetToDoListById(System.Int64)">
+            <summary>
+            Get ToDoList by id.
+            </summary>
+            <param name="toDoListId">ToDoList id.</param>
+        </member>
+        <member name="M:HomeWork_ToDos.API.GraphQl.Query.GetById">
+            <summary>
+            Get user by user id.
+            </summary>
+            <returns>Returns user details.</returns>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Middlewares.ContentLocationMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Process request.
+            </summary>
+            <returns>Returns nothing.</returns>
+        </member>
+        <member name="T:HomeWork_ToDos.API.Middlewares.ContentLocationMiddlewareExtensions">
+            <summary>
+            Extension of application builder for exception middleware.
+            </summary>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Middlewares.ContentLocationMiddlewareExtensions.UseContentLocationMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Configure Content-Location middleware.
+            </summary>
+            <param name="app">Application builder.</param>
+        </member>
+        <member name="T:HomeWork_ToDos.API.Middlewares.ExceptionMiddleware">
+            <summary>
+            Exception Middleware.
+            </summary>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Middlewares.ExceptionMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Process request.
+            </summary>
+            <param name="httpContext">HttpContext.</param>
+            <returns>Returns nothing.</returns>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Middlewares.ExceptionMiddleware.HandleExceptionAsync(Microsoft.AspNetCore.Http.HttpContext,System.Exception)">
+            <summary>
+            Handles exception and adds message in response with status code .
+            </summary>
+            <param name="context"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="T:HomeWork_ToDos.API.Middlewares.ExceptionMiddlewareExtensions">
+            <summary>
+            Extension of application builder for exception middleware.
+            </summary>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Middlewares.ExceptionMiddlewareExtensions.ConfigureExceptionMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Configure exception middleware.
+            </summary>
+            <param name="app">Application builder.</param>
+        </member>
+        <member name="T:HomeWork_ToDos.API.Middlewares.RequestResponseLoggingMiddleware">
+            <summary>
+            Middleware for logging request and response.
+            </summary>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Middlewares.RequestResponseLoggingMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILoggerFactory,CorrelationId.Abstractions.ICorrelationContextAccessor)">
+            <summary>
+            Create new instance of <see cref="T:HomeWork_ToDos.API.Middlewares.RequestResponseLoggingMiddleware"/> class.
+            </summary>
+            <param name="next">Next request delegate.</param>
+            <param name="loggerFactory">Logger factory.</param>
+            <param name="correlationContextAccessor">CorrelationContext accessor.</param>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Middlewares.RequestResponseLoggingMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Process request.
+            </summary>
+            <param name="context">Http context.</param>
+            <returns>Returns nothing.</returns>
+        </member>
+        <member name="T:HomeWork_ToDos.API.Middlewares.RequestResponseLoggingMiddlewareExtensions">
+            <summary>
+            Extension of application builder for request response logging middleware.
+            </summary>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Middlewares.RequestResponseLoggingMiddlewareExtensions.UseRequestResponseLogging(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Configure request response logging middleware
+            </summary>
+            <param name="builder">Application builder.</param>
+            <returns>Returns application builder.</returns>
+        </member>
+        <member name="T:HomeWork_ToDos.API.Services.CorrelationIdServiceExtension">
+            <summary>
+            Extension for IService collection for adding CorrelationId Handler and setting defaults.
+            </summary>
+        </member>
+        <member name="T:HomeWork_ToDos.API.Services.GraphQLServiceExtension">
+            <summary>
+            Extensionn method for configure IService Collection for adding GraphQl services.
+            </summary>
+        </member>
+        <member name="T:HomeWork_ToDos.API.Services.JwtAuthenticationServiceExtension">
+            <summary>
+            Implements extension method for adding jwtauthentication service.
+            </summary>
+        </member>
+        <member name="M:HomeWork_ToDos.API.Services.SwaggerServiceExtension.AddSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            implements extension method for adding Sqagger services.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="T:HomeWork_ToDos.Filters.CorrelationIdOperationFilter">
+            <summary>
+            Add CorrelationId header parameters.
+            </summary>
+        </member>
+        <member name="T:HomeWork_ToDos.Handlers.CorrelationIdDelegatingHandler">
+            <summary>
+            Implements method for forwarding CorrelationID in HttpRequestheader.
+            </summary>
+        </member>
+        <member name="M:HomeWork_ToDos.Handlers.CorrelationIdDelegatingHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <summary>
+            Forwards CorrelationID in HttpRequestheader.
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HomeWork_ToDos.Middlewares.JwtMiddleware">
+            <summary>
+            Middleware for Jwt Token verification.
+            </summary>
+        </member>
+        <member name="M:HomeWork_ToDos.Middlewares.JwtMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Options.IOptions{HomeWork_ToDos.CommonLib.Models.APIModels.AppSettings})">
+            <summary>
+            Create new instance of <see cref="T:HomeWork_ToDos.Middlewares.JwtMiddleware"/> class.
+            </summary>
+            <param name="next">Next request delegate.</param>
+            <param name="appSettings">App seetings.</param>
+        </member>
+        <member name="M:HomeWork_ToDos.Middlewares.JwtMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext,HomeWork_ToDos.CommonLib.Contracts.BL.IUserContract)">
+            <summary>
+            Process request.
+            </summary>
+            <param name="context">Http context.</param>
+            <param name="userService">User service.</param>
+            <returns>Returns nothing.</returns>
+        </member>
+    </members>
+</doc>
