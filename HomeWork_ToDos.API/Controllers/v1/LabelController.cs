@@ -164,7 +164,7 @@ namespace HomeWork_ToDos.API.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteLabel(long id)
+        public async Task<IActionResult> DeleteLabel([Required]long id)
         {
 
             long userId = long.Parse(HttpContext.Items["UserId"].ToString());

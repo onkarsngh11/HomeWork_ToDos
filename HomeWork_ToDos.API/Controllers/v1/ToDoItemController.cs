@@ -216,7 +216,7 @@ namespace HomeWork_ToDos.API.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteToDoItem(long id)
+        public async Task<IActionResult> DeleteToDoItem([Required]long id)
         {
             long userId = long.Parse(HttpContext.Items["UserId"].ToString());
             int deletedToDoItem = await _toDoItemContract.DeleteToDoItem(id, userId);
@@ -288,8 +288,8 @@ namespace HomeWork_ToDos.API.Controllers.v1
             }
             ToDoItemDto updatedToDoItemDto = await _toDoItemContract.UpdateToDoItem(itemToUpdateDto);
 
-            ToDoItemModel updateToDoItem = _mapper.Map<ToDoItemModel>(updatedToDoItemDto);              //Dto to Model
-            if (updateToDoItem == null)
+            ToDoItemModel updatedToDoItem = _mapper.Map<ToDoItemModel>(updatedToDoItemDto);              //Dto to Model
+            if (updatedToDoItem == null)
             {
                 return NotFound(
                     new ApiResponse<string>
@@ -305,8 +305,8 @@ namespace HomeWork_ToDos.API.Controllers.v1
                      new ApiResponse<ToDoItemModel>
                      {
                          IsSuccess = true,
-                         Result = updateToDoItem,
-                         Message = "ToDoItem record updated on " + updateToDoItem.UpdationDate
+                         Result = updatedToDoItem,
+                         Message = "ToDoItem with Id = " + updatedToDoItem.ToDoItemId + " is updated on " + updatedToDoItem.UpdationDate + " by UserId = " + userId + "."
                      });
             }
         }

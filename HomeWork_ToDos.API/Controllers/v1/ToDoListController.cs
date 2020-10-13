@@ -216,7 +216,7 @@ namespace HomeWork_ToDos.API.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteToDoList(long id)
+        public async Task<IActionResult> DeleteToDoList([Required]long id)
         {
             long userId = long.Parse(HttpContext.Items["UserId"].ToString());
             int deletedItem = await _toDoListContract.DeleteToDoList(id, userId);
@@ -306,7 +306,7 @@ namespace HomeWork_ToDos.API.Controllers.v1
                     {
                         IsSuccess = true,
                         Result = updatedToDoList,
-                        Message = "ToDoList record updated on " + updatedToDoList.UpdationDate + " by UserId = " + userId
+                        Message = "ToDoList record with id =" + updatedToDoList.ToDoListId + " is updated on " + updatedToDoList.UpdationDate + " by UserId = " + userId
                     });
             }
         }
